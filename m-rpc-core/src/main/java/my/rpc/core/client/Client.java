@@ -1,4 +1,4 @@
-package my.rpc.netty.client;
+package my.rpc.core.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;

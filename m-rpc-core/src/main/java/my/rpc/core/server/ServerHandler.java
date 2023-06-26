@@ -1,30 +1,27 @@
-package my.rpc.netty.client;
+package my.rpc.core.server;
 
-import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.util.ReferenceCountUtil;
 
 /**
  * @author mao
- * @ClassName ClientHandler.java
+ * @ClassName ServerHandler.java
  * @Description TODO
- * @createTime 2023年06月20日 21:25:00
+ * @createTime 2023年06月20日 22:52:00
  */
-public class ClientHandler extends ChannelInboundHandlerAdapter {
+public class ServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf byteBuf = (ByteBuf) msg;
-        String response = byteBuf.toString();
-        System.out.printf("[client] 接收到信息：%s \n", response);
-        ReferenceCountUtil.release(msg);
+        System.out.println("[Server] 接收到数据请求" + msg.toString());
+        ctx.writeAndFlush(Unpooled.copiedBuffer("msg from server".getBytes("UTF-8")));
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        super.exceptionCaught(ctx, cause);
+        cause.printStackTrace();
         Channel channel = ctx.channel();
         if (channel.isActive()) {
             ctx.close();
