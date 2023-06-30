@@ -2,6 +2,8 @@ package my.rpc.core.common.cache;
 
 import my.rpc.core.common.RpcInvocation;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,5 +19,7 @@ public class CommonClientCache {
     public static final ConcurrentHashMap<String, Object> RES_MAP = new ConcurrentHashMap<>();
 
     public static final BlockingQueue<RpcInvocation> SEND_QUEUE = new ArrayBlockingQueue<>(100);
+
+    public static final List<String> SUBSCRIBE_SERVICE_LIST = new ArrayList<>();
 
 }

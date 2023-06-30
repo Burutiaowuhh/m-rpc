@@ -1,5 +1,9 @@
 package my.rpc.core.common.cache;
 
+import my.rpc.core.registry.URL;
+
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -11,5 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CommonServerCache {
 
     public static final ConcurrentHashMap<String, Object> PROVIDER_CLASS_MAP = new ConcurrentHashMap<>();
+
+    public static final Set<URL> PROVIDER_URL_SET = new HashSet<>();
 
 }
