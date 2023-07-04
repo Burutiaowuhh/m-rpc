@@ -60,4 +60,12 @@ public class URL {
         return new String((url.getApplicationName() + ";" + url.getServiceName() + ";" +
                 host + ":" + port + ";" + System.currentTimeMillis()).getBytes(), StandardCharsets.UTF_8);
     }
+
+    public static String buildConsumerUrlStr(URL url) {
+        String host = url.getParameters().get("host");
+        return new String((url.getApplicationName() + ";" + url.getServiceName() + ";" +
+                host + ";" + System.currentTimeMillis()).getBytes(), StandardCharsets.UTF_8);
+    }
+
+
 }

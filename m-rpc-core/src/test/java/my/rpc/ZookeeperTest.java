@@ -23,7 +23,9 @@ public class ZookeeperTest {
         url.addParameter("port", "9096");
         zookeeperRegister.register(url);
 
-        Thread.sleep(600000);
+        Thread.sleep(10000);
+
+        zookeeperRegister.unRegister(url);
     }
 
     @Test
@@ -38,6 +40,20 @@ public class ZookeeperTest {
 
 
         Thread.sleep(60000);
+    }
+
+    @Test
+    public void testSubscribe() throws InterruptedException {
+        ZookeeperRegister zookeeperRegister = new ZookeeperRegister("localhost:2181");
+        URL url = new URL();
+        url.setServiceName("my.rpc.core.Server.DataService");
+        url.setApplicationName("mrpc-consume");
+        url.addParameter("host", "198.18.0.1");
+        zookeeperRegister.subscribe(url);
+
+        Thread.sleep(10000);
+
+        zookeeperRegister.doUnSubscribe(url);
     }
 
 }
